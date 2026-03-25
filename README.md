@@ -1,43 +1,109 @@
-# Ample.Sample — Email Marketing de Alta Conversão
+# Ample.Sample — Email Marketing HTML
 
-Template de email marketing profissional para a **Ample.Sample**, otimizado para alta conversão e humanização.
+Template de email marketing profissional da **Ample.Sample**, pronto para envio via Hostinger Email, Gmail, Outlook ou qualquer plataforma SMTP.
 
-## Arquivos
+---
 
-| Arquivo | Descrição |
+## Estrutura do Repositório
+
+```
+ample-sample-email/
+├── index.html     ← Template principal (pronto para uso)
+└── README.md      ← Instruções de envio
+```
+
+---
+
+## Como Enviar pelo Hostinger (Titan Mail / Webmail)
+
+### Passo a passo — Webmail
+
+1. Acesse [hpanel.hostinger.com](https://hpanel.hostinger.com) e faça login
+2. Vá em **Emails** → clique em **Acessar Webmail** ao lado do email `contato@amplesample.solutions`
+3. Clique em **Novo Email** (ícone de lápis / composição)
+4. Preencha os campos:
+   - **Para:** endereço(s) do(s) destinatário(s)
+   - **Assunto sugerido:** `O encontro entre inovação e propósito — Ample.Sample`
+5. No editor de texto, localize o ícone **`< >`** (Código-fonte / HTML)
+6. **Apague todo o conteúdo** existente na caixa de código
+7. **Cole o conteúdo completo** do arquivo `index.html`
+8. Clique em **OK** ou **Aplicar**
+9. Revise o preview visual e clique em **Enviar**
+
+---
+
+## Configurações SMTP do Hostinger
+
+Para integrar com plataformas de disparo (Mailchimp, Brevo, RD Station etc.):
+
+| Campo | Valor |
 |---|---|
-| `index.html` | Versão otimizada e humanizada (produção) |
-| `ample_sample_original.html` | Versão original para referência |
+| **Host SMTP** | `smtp.hostinger.com` |
+| **Porta SSL** | `465` |
+| **Porta TLS** | `587` |
+| **Usuário** | `contato@amplesample.solutions` |
+| **Senha** | senha do email Hostinger |
+| **Segurança** | SSL/TLS |
 
-## Melhorias Implementadas
+---
 
-O template foi redesenhado com base em princípios de email marketing de alta conversão:
+## Envio Programático via PHP (PHPMailer)
 
-**Humanização e Copywriting**
-- Abertura conversacional e próxima ao leitor
-- Linguagem menos corporativa, mais autêntica
-- Narrativa emocional com foco em benefícios reais
-- CTA provocativo e direto
+```php
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
 
-**Design e Visual**
-- Header com gradiente preto profissional
-- Logo Ample.Sample corrigido e posicionado corretamente
-- Hero banner com gradiente vermelho impactante
-- Cards de serviço com destaque visual
-- Botão CTA com contraste máximo para conversão
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host       = 'smtp.hostinger.com';
+$mail->SMTPAuth   = true;
+$mail->Username   = 'contato@amplesample.solutions';
+$mail->Password   = 'SUA_SENHA';
+$mail->SMTPSecure = 'ssl';
+$mail->Port       = 465;
+$mail->CharSet    = 'UTF-8';
 
-**Técnico**
-- Responsivo e mobile-first
-- Compatível com principais clientes de email (Gmail, Outlook, Apple Mail)
-- Preheader otimizado para preview
-- Animações suaves com respeito a `prefers-reduced-motion`
+$mail->setFrom('contato@amplesample.solutions', 'Ample.Sample');
+$mail->addAddress('destinatario@email.com', 'Nome do Destinatário');
 
-## Visualização
+$mail->Subject = 'O encontro entre inovação e propósito — Ample.Sample';
+$mail->isHTML(true);
+$mail->Body    = file_get_contents(__DIR__ . '/index.html');
 
-Acesse o preview em: [GitHub Pages](https://pages.github.com) após ativar nas configurações do repositório.
+$mail->send();
+echo 'Email enviado com sucesso.';
+?>
+```
 
-## Contato
+---
 
-**Ample.Sample** — Transformação Digital  
-contato@amplesample.solutions  
-[amplesample.solutions](https://amplesample.solutions)
+## Imagens — CDN Pública
+
+Todas as imagens estão hospedadas em CDN e carregam automaticamente. Nenhum upload adicional é necessário.
+
+| Elemento | Arquivo |
+|---|---|
+| Logo branco (header e footer) | `IJLtkdDqCzsQkMrN.png` |
+| Header — modelo editorial (IA) | `MgYGDRpPgkaSqgqX.jpg` |
+| Imagem de equipe criativa | `FsHUnWJrjQebfpWq.jpg` |
+| Thumbnail do vídeo YouTube | `YeJqYlFuSIqHkxta.jpg` |
+
+---
+
+## Antes de Enviar — Checklist
+
+- [ ] Substituir `[UNSUBSCRIBE_LINK]` pelo link de descadastro real
+- [ ] Confirmar o assunto do email
+- [ ] Testar envio para um endereço próprio antes do disparo final
+- [ ] Verificar visualização no mobile
+
+---
+
+## Compatibilidade
+
+Compatível com Gmail, Outlook 2016/2019/365, Apple Mail, Titan Mail (Hostinger), Yahoo Mail e dispositivos móveis.
+
+---
+
+**Ample.Sample** — [amplesample.solutions](https://amplesample.solutions)  
+contato@amplesample.solutions | CNPJ 57.864.015/0001-15
